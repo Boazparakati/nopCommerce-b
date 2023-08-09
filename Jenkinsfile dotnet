@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage ('VCS') {
             steps {
-                git url: 'https://github.com/SHIVASOMANATH/nopCommerce-n.git',
+                git url: 'https://github.com/Boazparakati/nopCommerce-b.git',
                     branch: 'develop'
             }
         }
