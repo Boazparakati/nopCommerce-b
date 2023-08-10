@@ -6,9 +6,6 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
-    tools {
-        jdk 'JAVA_17'
-    }
     stages {
         stage('git') {
             steps {
