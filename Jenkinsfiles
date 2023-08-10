@@ -9,17 +9,17 @@ pipeline {
     tools {
         jdk 'JAVA_17'
     }
-    stages {
-        stage('git') {
+    stages  {
+        stage ('vsc') {
             steps {
-                git url: 'https://github.com/Boazparakati/nopCommerce-b.git',
-                branch: 'develop'
+                git url : 'https://github.com/Boazparakati/nopCommerce-b.git',
+                branch : 'develop'
             }
-        stage('build and package') {
+        }
+        stage ('build and package') {
             steps {
-                sh 'dotnet build src/NopCommerce.sln'
-            }    
-        }       
+                sh script: 'dotnet build src/NopCommerce.sln'
+            }
         }
     }
 }
