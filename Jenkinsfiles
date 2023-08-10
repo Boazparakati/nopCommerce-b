@@ -1,0 +1,25 @@
+pipeline {
+    agent {label 'Nop3'}
+    options {
+        timeout(time: 1, unit: 'HOURS')
+    }
+    triggers {
+        pollSCM('* * * * *')
+    }
+    tools {
+        jdk 'JAVA_17'
+    }
+    stages {
+        stage('git') {
+            steps {
+                git url: 'https://github.com/Boazparakati/nopCommerce-b.git',
+                branch: 'master'
+            }
+        stage('build and package') {
+            steps {
+                sh 'dotnet build src/NopCommerce.sln'
+            }    
+        }       
+        }
+    }
+}
