@@ -5,6 +5,7 @@ pipeline {
     }
     triggers {
         pollSCM('* * * * *')
+        \
     }
     tools {
         jdk 'JAVA_17'
@@ -20,6 +21,18 @@ pipeline {
             steps {
                 sh script: 'dotnet build src/NopCommerce.sln'
             }
+        }
+    }
+    post {
+        success {
+            mail subject: "${JOB_NAME}: has completed with success",
+                 body: "your project is effective \n Build Url ${BUILD_URL}",
+                 to: "all@qt.com"
+        }
+        failure {
+           mail subject: "${JOB_NAME}:: has completed with failed",
+                 body: "your project is defective \n Build Url ${BUILD_URL}",
+                 to: "all@qt.com"
         }
     }
 }
